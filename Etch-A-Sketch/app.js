@@ -12,6 +12,10 @@ function createGrids(numSquares) {
             grid.style.width = percentage;
             grid.style.height = percentage;
             grid.style.border = "1px dashed black";
+            grid.addEventListener("mouseover", () => {
+                grid.style.backgroundColor = "black";
+            });
+
             gridContainer.appendChild(grid);
             console.log("Created single square");
         }
@@ -19,5 +23,23 @@ function createGrids(numSquares) {
     console.log("Created Grids");
 }
 
+function resetButton() {
+    let resetBtn = document.querySelector("#reset-btn");
+
+    resetBtn.addEventListener("click", () => {
+        let newNumSquares = prompt("Enter a number of squares (less than 100): ");
+        let gridContainer = document.querySelector("#grid-container");
+        removeAllChildNodes(gridContainer);
+        createGrids(newNumSquares);
+    });
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 let numSquares = 16;
 createGrids(numSquares);
+resetButton();

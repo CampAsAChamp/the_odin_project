@@ -4,8 +4,17 @@
     box-sizing: border-box;
 }
 
-#title {
+body {
     text-align: center;
+}
+
+#title {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#reset-btn {
+    margin-left: 200px;
 }
 
 #grid-container {
