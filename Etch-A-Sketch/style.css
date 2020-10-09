@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+#title {
+    text-align: center;
+}
+
+#grid-container {
+    height: 600px;
+    width: 600px;
+    background-color: red;
+    margin: 0 auto;
+    padding: 30px;
+}
