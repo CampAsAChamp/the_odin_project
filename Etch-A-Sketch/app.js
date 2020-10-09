@@ -27,7 +27,11 @@ function resetButton() {
     let resetBtn = document.querySelector("#reset-btn");
 
     resetBtn.addEventListener("click", () => {
-        let newNumSquares = prompt("Enter a number of squares (less than 100): ");
+        let newNumSquares = 0;
+        do {
+            newNumSquares = prompt("Enter a number of squares (less than 100): ");
+        } while (newNumSquares < 0 || newNumSquares > 100);
+
         let gridContainer = document.querySelector("#grid-container");
         removeAllChildNodes(gridContainer);
         createGrids(newNumSquares);
