@@ -40,3 +40,26 @@ function factorial(n) {
 
     return n * factorial(n - 1);
 }
+
+function operate(operator, x, y) {
+    console.log(operator, ": ", x, ", ", y);
+
+    switch (operator) {
+        case plus:
+            console.log("Plus");
+            break;
+        case minus:
+            console.log("Minus");
+            break;
+        case multiplication:
+            console.log("Multiplication");
+            break;
+        case divide:
+            console.log("Divide");
+            break;
+
+        default:
+            console.log("Operator not supported");
+            break;
+    }
+}
