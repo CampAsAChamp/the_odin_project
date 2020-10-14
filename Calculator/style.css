@@ -6,19 +6,26 @@
 
 #title {
     display: inline-block;
+    border: 5px solid green;
 }
 
 #calc-container {
     border: 5px solid red;
     display: grid;
     justify-content: center;
+    font-size: 50px;
 
     grid-template-rows: repeat(6, 100px);
     grid-template-columns: repeat(4, 100px);
 }
 
-.calc-display {
+#calc-display {
     grid-column: 1 / 5;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 50px;
+
     border: 5px solid black;
     background-color: grey;
 }
@@ -28,9 +35,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    cursor: pointer;
     /* height: 90px; */
     /* width: 90px; */
+}
+
+.helper {
+    background-color: yellowgreen;
 }
 
 .operator {

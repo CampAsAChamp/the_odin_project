@@ -63,3 +63,22 @@ function operate(operator, x, y) {
             break;
     }
 }
+
+let calcDisplay = document.querySelector("#calc-display");
+let numberBtns = document.querySelectorAll(".number");
+let clearAllBtn = document.querySelector("#clear");
+let backspaceBtn = document.querySelector("#backspace");
+
+clearAllBtn.addEventListener("click", () => {
+    calcDisplay.textContent = "";
+});
+
+backspaceBtn.addEventListener("click", () => {
+    calcDisplay.textContent = calcDisplay.textContent.slice(0, -1);
+});
+
+numberBtns.forEach((singleNum) => {
+    singleNum.addEventListener("click", () => {
+        calcDisplay.textContent += singleNum.textContent;
+    });
+});
