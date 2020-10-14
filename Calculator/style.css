@@ -4,11 +4,33 @@
     box-sizing: border-box;
 }
 
-body {
-    text-align: center;
-}
-
 #title {
     display: inline-block;
-    vertical-align: middle;
+}
+
+#calc-container {
+    border: 5px solid red;
+    display: grid;
+    justify-content: center;
+
+    grid-template-rows: repeat(5, 100px);
+    grid-template-columns: repeat(4, 100px);
+}
+
+.btn {
+    border: 2px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 90px;
+    width: 90px;
+}
+
+.operator {
+    background-color: yellowgreen;
+}
+
+.number {
+    background-color: aqua;
 }
