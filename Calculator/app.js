@@ -127,28 +127,13 @@ numberBtns.forEach((singleNum) => {
     });
 });
 
-/*
-1) Store the first number that is input into the calculator when a user presses an operator
-2) Save which operation has been chosen
-3) Call operate() on them when the user presses the “=” key.
-
-You should already have the code that can populate the display, 
-so once operate() has been called, update the display with the ‘solution’ to the operation.
-*/
-
 operatorBtns.forEach((singleOperator) => {
     singleOperator.addEventListener("click", () => {
         firstNum = calcDisplay.textContent;
         operator = singleOperator.textContent;
 
-        // if (
-        // calcDisplay.textContent.length !== 0 &&
-        // calcDisplay.textContent.charAt(calcDisplay.textContent.length - 1) !== singleOperator.textContent
-        // ) {
         opPressed = true;
         console.log("Pressed an operator:", operator);
-        // calcDisplay.textContent += singleOperator.textContent;
-        // }
     });
 });
 
