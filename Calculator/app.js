@@ -1,4 +1,31 @@
-const multiplyCode = "test";
+(function (window) {
+    window.htmlentities = {
+        /**
+         * Converts a string to its html characters completely.
+         *
+         * @param {String} str String with unescaped HTML characters
+         **/
+        encode: function (str) {
+            var buf = [];
+
+            for (var i = str.length - 1; i >= 0; i--) {
+                buf.unshift(["&#", str[i].charCodeAt(), ";"].join(""));
+            }
+
+            return buf.join("");
+        },
+        /**
+         * Converts an html characterSet into its original character.
+         *
+         * @param {String} str htmlSet entities
+         **/
+        decode: function (str) {
+            return str.replace(/&#(\d+);/g, function (match, dec) {
+                return String.fromCharCode(dec);
+            });
+        },
+    };
+})(window);
 
 function add(x, y) {
     return x + y;
@@ -46,17 +73,19 @@ function factorial(n) {
 function operate(operator, x, y) {
     console.log(operator, ": ", x, ", ", y);
 
-    switch (operator) {
-        case plus:
+    let decodedEntity = htmlentities.decode(operator);
+
+    switch (decodedEntity) {
+        case decodedAddCode:
             console.log("Plus");
             break;
-        case minus:
+        case decodedSubtractCode:
             console.log("Minus");
             break;
-        case multiplication:
+        case decodedMultiplyCode:
             console.log("Multiplication");
             break;
-        case divide:
+        case decodedDivideCode:
             console.log("Divide");
             break;
 
@@ -71,10 +100,17 @@ let numberBtns = document.querySelectorAll(".number");
 let operatorBtns = document.querySelectorAll(".operator");
 let clearAllBtn = document.querySelector("#clear");
 let backspaceBtn = document.querySelector("#backspace");
-// let divideBtn = document.querySelector("#divide");
-// let multiplyBtn = document.querySelector("#multiply");
-// let subtractBtn = document.querySelector("#subtract");
-// let addBtn = document.querySelector("#add");
+
+let divideBtn = document.querySelector("#divide");
+let multiplyBtn = document.querySelector("#multiply");
+let subtractBtn = document.querySelector("#subtract");
+let addBtn = document.querySelector("#add");
+
+const decodedDivideCode = htmlentities.decode(divideBtn.textContent);
+const decodedMultiplyCode = htmlentities.decode(multiplyBtn.textContent);
+const decodedSubtractCode = htmlentities.decode(subtractBtn.textContent);
+const decodedAddCode = htmlentities.decode(addBtn.textContent);
+
 let firstNum = 0;
 let secondNum = 0;
 let operator = "";
@@ -82,6 +118,10 @@ let opPressed = false;
 
 clearAllBtn.addEventListener("click", () => {
     calcDisplay.textContent = "";
+    firstNum = 0;
+    secondNum = 0;
+    operator = "";
+    opPressed = false;
 });
 
 backspaceBtn.addEventListener("click", () => {
