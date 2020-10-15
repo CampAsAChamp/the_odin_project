@@ -35,64 +35,48 @@ function subtract(x, y) {
     return x - y;
 }
 
-function sum(array) {
-    let sum = 0;
-    for (let i = 0; i < array.length; i++) {
-        sum += array[i];
-    }
-
-    return sum;
+function multiply(x, y) {
+    return x * y;
 }
 
-function multiply(array) {
-    let product = 1;
-    for (let i = 0; i < array.length; i++) {
-        product *= array[i];
+function divide(x, y) {
+    if (y === 0) {
+        alert("Can't divide by 0");
+        clearCalc();
     }
-
-    return product;
-}
-
-function power(base, exponent) {
-    let product = 1;
-    for (let i = 0; i < exponent; i++) {
-        product *= base;
-    }
-
-    return product;
-}
-
-function factorial(n) {
-    if (n < 1) {
-        return 1;
-    }
-
-    return n * factorial(n - 1);
+    return x / y;
 }
 
 function operate(operator, x, y) {
     console.log(operator, ": ", x, ", ", y);
 
     let decodedEntity = htmlentities.decode(operator);
+    let result = 0;
 
     switch (decodedEntity) {
         case decodedAddCode:
             console.log("Plus");
+            result = add(x, y);
             break;
         case decodedSubtractCode:
             console.log("Minus");
+            result = subtract(x, y);
             break;
         case decodedMultiplyCode:
             console.log("Multiplication");
+            result = multiply(x, y);
             break;
         case decodedDivideCode:
             console.log("Divide");
+            result = divide(x, y);
             break;
 
         default:
+            clearCalc();
             console.log("Operator not supported");
             break;
     }
+    calcDisplay.textContent = result;
 }
 
 let calcDisplay = document.querySelector("#calc-display");
@@ -105,6 +89,7 @@ let divideBtn = document.querySelector("#divide");
 let multiplyBtn = document.querySelector("#multiply");
 let subtractBtn = document.querySelector("#subtract");
 let addBtn = document.querySelector("#add");
+let equalBtn = document.querySelector("#equal");
 
 const decodedDivideCode = htmlentities.decode(divideBtn.textContent);
 const decodedMultiplyCode = htmlentities.decode(multiplyBtn.textContent);
@@ -116,12 +101,16 @@ let secondNum = 0;
 let operator = "";
 let opPressed = false;
 
-clearAllBtn.addEventListener("click", () => {
-    calcDisplay.textContent = "";
+function clearCalc() {
     firstNum = 0;
     secondNum = 0;
     operator = "";
     opPressed = false;
+}
+
+clearAllBtn.addEventListener("click", () => {
+    calcDisplay.textContent = "";
+    clearCalc();
 });
 
 backspaceBtn.addEventListener("click", () => {
@@ -133,8 +122,6 @@ numberBtns.forEach((singleNum) => {
         if (opPressed) {
             calcDisplay.textContent = "";
             secondNum = singleNum.textContent;
-            console.log(firstNum, operator, secondNum);
-            operate(operator, firstNum, secondNum);
         }
         calcDisplay.textContent += singleNum.textContent;
     });
@@ -163,4 +150,8 @@ operatorBtns.forEach((singleOperator) => {
         // calcDisplay.textContent += singleOperator.textContent;
         // }
     });
+});
+
+equalBtn.addEventListener("click", () => {
+    operate(operator, firstNum, secondNum);
 });
