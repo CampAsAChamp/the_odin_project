@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sandbox 😎</title>
+</head>
+
+<body>
+    <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+    <script>
+        /*
+        Write a constructor for making “Book” objects. We will revisit this in the project at the end of this lesson.
+        Your book objects should have the book’s title, author, the number of pages, and whether or not you have read the book
+        */
+        function Book(title, author, numPages, hasRead) {
+            this.title = title;
+            this.author = author;
+            this.numPages = numPages;
+            this.hasRead = hasRead;
+            this.info = function () { return title + " by " + author + ", " + numPages + " pages, " + (hasRead ? "has been read" : "not read yet"); }
+        }
+
+        const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
+        // console.log(theHobbit.info()); // "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
+
+
+
+
+
+
+    </script>
+
+    <script src="./inheritence.js"></script>
+</body>
+
+</html>
