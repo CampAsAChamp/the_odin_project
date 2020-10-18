@@ -10,6 +10,39 @@
 
 <body>
     <h1 id="title">Library</h1>
+    <!-- <button id="new-book-btn">New Book</button> -->
+    <!-- Button to open the modal login form -->
+    <button onclick="document.getElementById('id01').style.display='block'">Add New Book</button>
+
+    <!-- The Modal -->
+    <div id="id01" class="modal">
+
+        <!-- Modal Content -->
+        <div class="modal-content animate">
+
+            <div class="container">
+                <label for="title"><b>Title</b></label>
+                <input id="titleBox" type="text" placeholder="Enter Title" name="title" required>
+
+                <label for="author"><b>Author</b></label>
+                <input id="authorBox" type="text" placeholder="Enter Author" name="author" required>
+
+                <label for="numPages"><b>Number of Pages</b></label>
+                <input id="numPagesBox" type="text" placeholder="Enter Number of Pages" name="numPages" required>
+
+                <label>
+                    <input id="hasReadCheckbox" type="checkbox" name="beenRead"> Already Read
+                </label>
+                <button id="submit-btn" type="submit">Submit</button>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                    class="cancelbtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="main-container"></div>
 </body>
 
 <script src="./app.js"></script>
