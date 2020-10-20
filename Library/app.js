@@ -36,13 +36,14 @@ function addBookToPage(book) {
     deleteBtn.className += "delete-btn";
     deleteBtn.style.width = "100px";
     deleteBtn.style.backgroundColor = "red";
-    deleteBtn.addEventListener("click", (event) => {
-        console.log(bookElem.dataset.id);
+    deleteBtn.addEventListener("click", () => {
+        // console.log(bookElem.dataset.id);
 
         // Remove from the DOM element from the page
         bookElem.remove();
         // Remove from the book object array
         myLibrary.splice(bookElem.dataset.id, 1);
+
         updateBookIDs();
     });
 
@@ -56,7 +57,7 @@ function addBookToPage(book) {
 
 function updateBookIDs() {
     const deleteBtns = document.querySelectorAll(".delete-btn");
-    console.log("Num Delete Btns: ", deleteBtns.length);
+    // console.log("Num Delete Btns: ", deleteBtns.length);
     for (let i = 0; i < deleteBtns.length; i++) {
         // Get the parent of the delete btn and change its id
         deleteBtns[i].parentElement.dataset.id = i;
