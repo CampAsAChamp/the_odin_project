@@ -1,3 +1,6 @@
+const container = document.querySelector(".main-container");
+const modal = document.getElementById("id01");
+
 function Book(title, author, numPages, hasRead) {
     this.title = title;
     this.author = author;
@@ -10,10 +13,14 @@ function Book(title, author, numPages, hasRead) {
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
+    addBookToPage(book);
+}
 
-    let container = document.querySelector(".main-container");
-
+function addBookToPage(book) {
     let bookElem = document.createElement("div");
+    bookElem.style.border = "5px solid black";
+    bookElem.style.backgroundColor = "aquamarine";
+    bookElem.dataset.id = myLibrary.length - 1;
 
     let bookTitle = document.createElement("h3");
     bookTitle.textContent = book.title;
@@ -24,19 +31,36 @@ function addBookToLibrary(book) {
     let bookBeenRead = document.createElement("p");
     bookBeenRead.textContent = book.hasRead;
 
-    bookElem.style.border = "5px solid black";
-    bookElem.style.backgroundColor = "aquamarine";
+    let deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.className += "delete-btn";
+    deleteBtn.style.width = "100px";
+    deleteBtn.style.backgroundColor = "red";
+    deleteBtn.addEventListener("click", (event) => {
+        console.log(bookElem.dataset.id);
+
+        // Remove from the DOM element from the page
+        bookElem.remove();
+        // Remove from the book object array
+        myLibrary.splice(bookElem.dataset.id, 1);
+        updateBookIDs();
+    });
 
     bookElem.appendChild(bookTitle);
     bookElem.appendChild(bookAuthor);
     bookElem.appendChild(bookPages);
     bookElem.appendChild(bookBeenRead);
+    bookElem.appendChild(deleteBtn);
     container.appendChild(bookElem);
 }
 
-function displayAllBooks() {
-    // console.table(myLibrary);
-    myLibrary.forEach(addBookToLibrary);
+function updateBookIDs() {
+    const deleteBtns = document.querySelectorAll(".delete-btn");
+    console.log("Num Delete Btns: ", deleteBtns.length);
+    for (let i = 0; i < deleteBtns.length; i++) {
+        // Get the parent of the delete btn and change its id
+        deleteBtns[i].parentElement.dataset.id = i;
+    }
 }
 
 let submitBtn = document.querySelector("#submit-btn");
@@ -48,15 +72,9 @@ submitBtn.addEventListener("click", () => {
     let hasRead = document.querySelector("#hasReadCheckbox").checked;
 
     let book = new Book(title, author, numPages, hasRead);
-    console.log(title);
-    console.log(author);
-    console.log(numPages);
-    console.log(hasRead);
-
     addBookToLibrary(book);
 
     // Automatically close when user clicks submit
-    var modal = document.getElementById("id01");
     modal.style.display = "none";
 });
 
@@ -68,6 +86,3 @@ const gone_girl = new Book("Gone Girl", "John Greene", 432, false);
 addBookToLibrary(the_hobbit);
 addBookToLibrary(hunger_games);
 addBookToLibrary(gone_girl);
-
-// displayAllBooks();
-// console.log(the_hobbit.info()); // "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
