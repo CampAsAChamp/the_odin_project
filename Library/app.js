@@ -47,22 +47,15 @@ function addBookToPage(book) {
     readBtn.textContent = "Read";
     readBtn.className += "read-btn";
     readBtn.addEventListener("click", () => {
-        // Update the read status in the object array
-        let hasReadVal = myLibrary[bookElem.dataset.id].hasRead;
-
-        if (hasReadVal) {
-            myLibrary[bookElem.dataset.id].hasRead = false;
-        } else {
-            myLibrary[bookElem.dataset.id].hasRead = true;
-        }
-
-        // Update the text content in the DOM element
+        // Toggle the text content in the DOM element
         let hasReadText = bookElem.childNodes[3].textContent;
         if (hasReadText === "false") {
-            bookElem.childNodes[3].textContent = true;
+            bookElem.childNodes[3].textContent = "true";
         } else {
-            bookElem.childNodes[3].textContent = false;
+            bookElem.childNodes[3].textContent = "false";
         }
+        // Toggle the read status in the object array
+        myLibrary[bookElem.dataset.id].hasRead = !myLibrary[bookElem.dataset.id].hasRead;
     });
 
     bookElem.appendChild(bookTitle);
