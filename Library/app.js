@@ -66,6 +66,7 @@ function addBookToPage(book) {
             bookElem.childNodes[3].textContent = "false";
         }
         // Toggle the read status in the object array
+        console.log("MyLibrary Index: ", bookElem.dataset.id);
         myLibrary[bookElem.dataset.id].hasRead = !myLibrary[bookElem.dataset.id].hasRead;
         saveBooksToStorage();
     });
@@ -101,6 +102,7 @@ function loadBooksFromStorage() {
     console.log(JSON.parse(localStorage.getItem("myLibrary")));
     if (myLibrary !== null) {
         myLibrary.forEach(addBookToPage);
+        updateBookIDs();
         console.log("MyLibrary: ", myLibrary.length);
     } else {
         myLibrary = [];
