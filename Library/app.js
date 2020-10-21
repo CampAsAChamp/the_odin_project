@@ -1,5 +1,13 @@
+let myLibrary = [];
+
 const container = document.querySelector(".main-container");
 const modal = document.getElementById("id01");
+const submitBtn = document.querySelector("#submit-btn");
+const clearBooksBtn = document.querySelector("#clearBookBtn");
+
+window.onload = function () {
+    loadBooksFromStorage();
+};
 
 function Book(title, author, numPages, hasRead) {
     this.title = title;
@@ -12,7 +20,9 @@ function Book(title, author, numPages, hasRead) {
 }
 
 function addBookToLibrary(book) {
+    // Add to the book object array
     myLibrary.push(book);
+    // Create the DOM for the book to display on the page
     addBookToPage(book);
 }
 
@@ -41,6 +51,7 @@ function addBookToPage(book) {
         myLibrary.splice(bookElem.dataset.id, 1);
 
         updateBookIDs();
+        saveBooksToStorage();
     });
 
     let readBtn = document.createElement("button");
@@ -56,6 +67,7 @@ function addBookToPage(book) {
         }
         // Toggle the read status in the object array
         myLibrary[bookElem.dataset.id].hasRead = !myLibrary[bookElem.dataset.id].hasRead;
+        saveBooksToStorage();
     });
 
     bookElem.appendChild(bookTitle);
@@ -68,15 +80,33 @@ function addBookToPage(book) {
 }
 
 function updateBookIDs() {
-    const deleteBtns = document.querySelectorAll(".delete-btn");
-    // console.log("Num Delete Btns: ", deleteBtns.length);
-    for (let i = 0; i < deleteBtns.length; i++) {
-        // Get the parent of the delete btn and change its id
-        deleteBtns[i].parentElement.dataset.id = i;
+    const books = document.querySelectorAll(".book");
+
+    for (let i = 0; i < books.length; i++) {
+        books[i].dataset.id = i;
     }
 }
 
-let submitBtn = document.querySelector("#submit-btn");
+function saveBooksToStorage() {
+    // console.log(JSON.stringify(myLibrary));
+    localStorage.clear();
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    console.log(JSON.stringify(myLibrary));
+    console.log("Saved library to local storage");
+}
+
+function loadBooksFromStorage() {
+    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+    // console.log("MyLibrary: ", myLibrary.length);
+    console.log(JSON.parse(localStorage.getItem("myLibrary")));
+    if (myLibrary !== null) {
+        myLibrary.forEach(addBookToPage);
+        console.log("MyLibrary: ", myLibrary.length);
+    } else {
+        myLibrary = [];
+    }
+    console.log("Loaded library from local storage");
+}
 
 submitBtn.addEventListener("click", () => {
     let title = document.querySelector("#titleBox").value;
@@ -85,17 +115,33 @@ submitBtn.addEventListener("click", () => {
     let hasRead = document.querySelector("#hasReadCheckbox").checked;
 
     let book = new Book(title, author, numPages, hasRead);
+    console.log(title);
+    console.log(author);
+    console.log(numPages);
+    console.log(hasRead);
     addBookToLibrary(book);
-
+    saveBooksToStorage();
     // Automatically close when user clicks submit
     modal.style.display = "none";
 });
 
-let myLibrary = [];
+clearBooksBtn.addEventListener("click", () => {
+    myLibrary.length = 0;
+    let books = document.querySelectorAll(".book");
+
+    books.forEach((book) => {
+        book.remove();
+    });
+
+    localStorage.clear();
+
+    console.log("Removed all books");
+});
+
 const the_hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
 const hunger_games = new Book("The Hunger Games", "Suzane Collins", 360, false);
 const gone_girl = new Book("Gone Girl", "John Greene", 432, false);
 
-addBookToLibrary(the_hobbit);
-addBookToLibrary(hunger_games);
-addBookToLibrary(gone_girl);
+// addBookToLibrary(the_hobbit);
+// addBookToLibrary(hunger_games);
+// addBookToLibrary(gone_girl);

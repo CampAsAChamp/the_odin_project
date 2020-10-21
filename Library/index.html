@@ -12,7 +12,9 @@
     <h1 id="title">Library</h1>
     <!-- <button id="new-book-btn">New Book</button> -->
     <!-- Button to open the modal login form -->
-    <button onclick="document.getElementById('id01').style.display='block'">Add New Book</button>
+    <button id='addBookBtn' class="fullWidthBtn" onclick="document.getElementById('id01').style.display='block'">Add New
+        Book</button>
+    <button id='clearBookBtn' class="fullWidthBtn">Clear All Books</button>
 
     <!-- The Modal -->
     <div id="id01" class="modal">
@@ -33,7 +35,7 @@
                 <label>
                     <input id="hasReadCheckbox" type="checkbox" name="beenRead"> Already Read
                 </label>
-                <button id="submit-btn" type="submit">Submit</button>
+                <button id="submit-btn" class="fullWidthBtn" type="submit">Submit</button>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">

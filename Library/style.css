@@ -29,6 +29,10 @@
     background-color: blue;
 }
 
+#clearBookBtn {
+    background-color: red;
+}
+
 /* Full-width input fields */
 input[type="text"],
 input[type="password"] {
@@ -48,11 +52,15 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    /* width: 100%; */
 }
 
 button:hover {
     opacity: 0.8;
+}
+
+.fullWidthBtn {
+    width: 100%;
 }
 
 /* Extra styles for the cancel button */
