@@ -18,8 +18,7 @@ function addBookToLibrary(book) {
 
 function addBookToPage(book) {
     let bookElem = document.createElement("div");
-    bookElem.style.border = "5px solid black";
-    bookElem.style.backgroundColor = "aquamarine";
+    bookElem.className += "book";
     bookElem.dataset.id = myLibrary.length - 1;
 
     let bookTitle = document.createElement("h3");
@@ -34,11 +33,8 @@ function addBookToPage(book) {
     let deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
     deleteBtn.className += "delete-btn";
-    deleteBtn.style.width = "100px";
-    deleteBtn.style.backgroundColor = "red";
-    deleteBtn.addEventListener("click", () => {
-        // console.log(bookElem.dataset.id);
 
+    deleteBtn.addEventListener("click", () => {
         // Remove from the DOM element from the page
         bookElem.remove();
         // Remove from the book object array
@@ -47,11 +43,34 @@ function addBookToPage(book) {
         updateBookIDs();
     });
 
+    let readBtn = document.createElement("button");
+    readBtn.textContent = "Read";
+    readBtn.className += "read-btn";
+    readBtn.addEventListener("click", () => {
+        // Update the read status in the object array
+        let hasReadVal = myLibrary[bookElem.dataset.id].hasRead;
+
+        if (hasReadVal) {
+            myLibrary[bookElem.dataset.id].hasRead = false;
+        } else {
+            myLibrary[bookElem.dataset.id].hasRead = true;
+        }
+
+        // Update the text content in the DOM element
+        let hasReadText = bookElem.childNodes[3].textContent;
+        if (hasReadText === "false") {
+            bookElem.childNodes[3].textContent = true;
+        } else {
+            bookElem.childNodes[3].textContent = false;
+        }
+    });
+
     bookElem.appendChild(bookTitle);
     bookElem.appendChild(bookAuthor);
     bookElem.appendChild(bookPages);
     bookElem.appendChild(bookBeenRead);
     bookElem.appendChild(deleteBtn);
+    bookElem.appendChild(readBtn);
     container.appendChild(bookElem);
 }
 
