@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+#title {
+    /* border: 5px solid green; */
+    display: inline-block;
+}
+
+.container {
+    margin: 0 auto;
+    height: 600px;
+    width: 600px;
+    background-color: aquamarine;
+}
