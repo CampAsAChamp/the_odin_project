@@ -38,6 +38,7 @@ function addBookToPage(book) {
     let bookPages = document.createElement("p");
     bookPages.textContent = book.numPages;
     let bookBeenRead = document.createElement("p");
+    bookBeenRead.setAttribute("id", "beenRead");
     bookBeenRead.textContent = book.hasRead;
 
     let deleteBtn = document.createElement("button");
