@@ -29,7 +29,9 @@ const GameBoard = (() => {
 })();
 
 const DisplayController = (() => {
-    const squareEventListener = () => {
+    const squareEventListener = (x, y) => {
+        console.log({ x });
+        console.log({ y });
         console.log("Clicked a square");
     };
 
@@ -41,7 +43,7 @@ const DisplayController = (() => {
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 let square = document.createElement("div");
-                square.addEventListener("click", squareEventListener);
+                square.addEventListener("click", squareEventListener.bind(null, j, i));
                 square.className += "square";
                 if (gb[i][j] == choices.O) {
                     // Create an O and add it to the board
