@@ -21,9 +21,9 @@ const calculator = (() => {
 
 const GameBoard = (() => {
     let gb = [
-        [choices.X, choices.O, choices.X],
-        [choices.O, choices.Blank, choices.O],
-        [choices.X, choices.O, choices.X],
+        [choices.X, choices.Blank, choices.O],
+        [choices.Blank, choices.Blank, choices.Blank],
+        [choices.Blank, choices.Blank, choices.Blank],
     ];
     return { gb };
 })();
@@ -41,14 +41,17 @@ const DisplayController = (() => {
                 if (gb[i][j] == choices.O) {
                     // Create an O and add it to the board
                     square.style.backgroundColor = "blue";
+                    square.textContent = "O";
                     oCount++;
                 } else if (gb[i][j] == choices.X) {
                     // Create an X and add it to the board
                     square.style.backgroundColor = "red";
+                    square.textContent = "X";
                     xCount++;
                 } else {
                     // Leave it blank
-                    square.style.backgroundColor = "green";
+                    square.style.backgroundColor = "white";
+                    square.textContent = "";
                     blankCount++;
                 }
                 container.appendChild(square);
@@ -57,13 +60,14 @@ const DisplayController = (() => {
 
         console.log({ xCount });
         console.log({ oCount });
+        console.log({ blankCount });
     };
     return { updateDisplay };
 })();
 
 const jeff = PersonFactory("jeff", 27);
 jeff.age;
-jeff.sayHello();
+// jeff.sayHello();
 calculator.add(3, 5); // 8
 
 DisplayController.updateDisplay(GameBoard.gb);
