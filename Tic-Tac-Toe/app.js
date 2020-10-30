@@ -40,17 +40,18 @@ const DisplayController = (() => {
                 square.className += "square";
                 if (gb[i][j] == choices.O) {
                     // Create an O and add it to the board
-                    square.style.backgroundColor = "blue";
+                    square.style.color = "blue";
                     square.textContent = "O";
                     oCount++;
                 } else if (gb[i][j] == choices.X) {
                     // Create an X and add it to the board
-                    square.style.backgroundColor = "red";
+                    // square.style.backgroundColor = "red";
+                    square.style.color = "red";
                     square.textContent = "X";
                     xCount++;
                 } else {
                     // Leave it blank
-                    square.style.backgroundColor = "white";
+                    // square.style.color = "white";
                     square.textContent = "";
                     blankCount++;
                 }
