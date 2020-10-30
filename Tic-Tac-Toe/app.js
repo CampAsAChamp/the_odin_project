@@ -29,6 +29,10 @@ const GameBoard = (() => {
 })();
 
 const DisplayController = (() => {
+    const squareEventListener = () => {
+        console.log("Clicked a square");
+    };
+
     const updateDisplay = (gb) => {
         let xCount = 0;
         let oCount = 0;
@@ -37,6 +41,7 @@ const DisplayController = (() => {
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 let square = document.createElement("div");
+                square.addEventListener("click", squareEventListener);
                 square.className += "square";
                 if (gb[i][j] == choices.O) {
                     // Create an O and add it to the board

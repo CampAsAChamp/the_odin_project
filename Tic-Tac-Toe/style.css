@@ -35,6 +35,7 @@
     width: 100%;
     margin: auto;
     background-color: white;
+    cursor: pointer;
 }
 
 /* Adds the boders to make the tic tac toe outline */
