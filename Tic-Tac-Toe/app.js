@@ -1,5 +1,6 @@
 const container = document.querySelector(".container");
 const rowWidth = 3;
+const colWidth = 3;
 
 const choices = Object.freeze({
     X: "X",
@@ -35,34 +36,27 @@ const GameBoard = (() => {
     return { gb };
 })();
 
-const DisplayController = ((gb) => {
+const DisplayController = (() => {
     const squareEventListener = (gb, i, j) => {
-        console.log({ i });
-        console.log({ j });
-        if (gb[i][j] === choices.Blank) {
-            // Okay to mark
-            // will only get you ones with a value of 1.
-            console.log("Marked");
-            let rowSelector = "[data-row='" + j.toString() + "']";
-            console.log({ rowSelector });
+        let rowSelector = "[data-row='" + j + "']";
+        let clickedSquare = document.querySelectorAll(rowSelector)[i];
 
-            // let clickedSquare = document.querySelector("[data-id='0']");
-            // let singleSquare = document.querySelectorAll("[data-row='1']")[j];
-            let singleSquare = document.querySelectorAll(rowSelector)[i];
-            console.log(singleSquare);
-            singleSquare.style.color = "red";
-            singleSquare.textContent = "X";
+        if (gb[i][j] === choices.Blank) {
+            clickedSquare.style.color = "red";
+            clickedSquare.textContent = "X";
+            gb[i][j] = choices.X;
+        } else {
+            clickedSquare.style.color = "blue";
+            clickedSquare.textContent = "O";
+            gb[i][j] = choices.O;
         }
-        // console.log(gb[i][j]);
         // square.style.player = "blue";
         // square.textContent = "O";
         // mygb[x][y] = player === players.O ? choices.O : choices.X;
-        console.log("Clicked a square");
     };
 
     const addSquareToBoard = (gb, i, j) => {
         let square = document.createElement("div");
-        square.dataset.id = rowWidth * i + j;
         square.dataset.row = j;
         square.dataset.col = i;
         square.addEventListener("click", squareEventListener.bind(null, gb, i, j));
@@ -84,7 +78,7 @@ const DisplayController = ((gb) => {
 
     const updateDisplay = (gb) => {
         for (let i = 0; i < rowWidth; i++) {
-            for (let j = 0; j < rowWidth; j++) {
+            for (let j = 0; j < colWidth; j++) {
                 addSquareToBoard(gb, i, j);
             }
         }
@@ -100,6 +94,7 @@ player2.sayHello();
 /*
     turn = red/blue
 
+    GameController.playGame()
     while(gameWon)
     {
         pickSquare()
