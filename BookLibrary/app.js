@@ -9,15 +9,28 @@ window.onload = function () {
     loadBooksFromStorage();
 };
 
-function Book(title, author, numPages, hasRead) {
-    this.title = title;
-    this.author = author;
-    this.numPages = numPages;
-    this.hasRead = hasRead;
-    this.info = function () {
+class Book {
+    constructor(title, author, numPages, hasRead) {
+        this.title = title;
+        this.author = author;
+        this.numPages = numPages;
+        this.hasRead = hasRead;
+    }
+
+    info() {
         return title + " by " + author + ", " + numPages + " pages, " + (hasRead ? "has been read" : "not read yet");
-    };
+    }
 }
+
+// function Book(title, author, numPages, hasRead) {
+//     this.title = title;
+//     this.author = author;
+//     this.numPages = numPages;
+//     this.hasRead = hasRead;
+//     this.info = function () {
+//         return title + " by " + author + ", " + numPages + " pages, " + (hasRead ? "has been read" : "not read yet");
+//     };
+// }
 
 function addBookToLibrary(book) {
     // Add to the book object array

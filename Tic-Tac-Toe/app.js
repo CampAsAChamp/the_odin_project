@@ -36,39 +36,40 @@ const GameBoard = (() => {
     return { gb };
 })();
 
-const DisplayController = (() => {
+const DisplayController = ((parGB) => {
+    let gb = parGB;
+
     const squareEventListener = (gb, i, j) => {
+        console.log("Clicked square");
         let rowSelector = "[data-row='" + j + "']";
         let clickedSquare = document.querySelectorAll(rowSelector)[i];
 
         if (gb[i][j] === choices.Blank) {
             clickedSquare.style.color = "red";
-            clickedSquare.textContent = "X";
+            clickedSquare.textContent = choices.X;
             gb[i][j] = choices.X;
         } else {
             clickedSquare.style.color = "blue";
-            clickedSquare.textContent = "O";
+            clickedSquare.textContent = choices.O;
             gb[i][j] = choices.O;
         }
-        // square.style.player = "blue";
-        // square.textContent = "O";
         // mygb[x][y] = player === players.O ? choices.O : choices.X;
     };
 
-    const addSquareToBoard = (gb, i, j) => {
+    const addSquareToBoard = (i, j) => {
         let square = document.createElement("div");
-        square.dataset.row = j;
-        square.dataset.col = i;
-        square.addEventListener("click", squareEventListener.bind(null, gb, i, j));
+        // square.dataset.row = j;
+        // square.dataset.col = i;
+        square.addEventListener("click", squareEventListener.bind(null, i, j));
         square.className += "square";
         if (gb[i][j] == choices.O) {
             // Create an O and add it to the board
             square.style.color = "blue";
-            square.textContent = "O";
+            square.textContent = choices.O;
         } else if (gb[i][j] == choices.X) {
             // Create an X and add it to the board
             square.style.color = "red";
-            square.textContent = "X";
+            square.textContent = choices.X;
         } else {
             // Leave it blank
             square.textContent = "";
@@ -76,14 +77,24 @@ const DisplayController = (() => {
         container.appendChild(square);
     };
 
-    const updateDisplay = (gb) => {
+    const updateDisplay = () => {
         for (let i = 0; i < rowWidth; i++) {
             for (let j = 0; j < colWidth; j++) {
-                addSquareToBoard(gb, i, j);
+                // addSquareToBoard(gb, i, j);
             }
         }
     };
-    return { updateDisplay };
+
+    const initDisplayBoard = (gb) => {
+        const squares = document.querySelectorAll(".square");
+
+        for (let i = 0; i < rowWidth; i++) {
+            for (let j = 0; j < colWidth; j++) {
+                squares[rowWidth * j + i].addEventListener("click", squareEventListener.bind(null, gb, i, j));
+            }
+        }
+    };
+    return { initDisplayBoard };
 })();
 
 const player1 = PersonFactory("Player1", players.X);
@@ -105,7 +116,9 @@ player2.sayHello();
 */
 calculator.add(3, 5); // 8
 
-DisplayController.updateDisplay(GameBoard.gb);
+DisplayController.initDisplayBoard(GameBoard.gb);
+
+// DisplayController.updateDisplay(GameBoard.gb);
 // DisplayController.updateDisplay(GameBoard.gb);
 
 // DisplayController.updateDisplay(GameBoard.gb);
