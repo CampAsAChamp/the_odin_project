@@ -3,7 +3,7 @@ import { contactPageLoad } from "./contactPageLoad";
 import { menuPageLoad } from "./menuPageLoad";
 
 homePageLoad();
-contactPageLoad();
-menuPageLoad();
+// contactPageLoad();
+// menuPageLoad();
 
 console.log("Restaraunt page is working");

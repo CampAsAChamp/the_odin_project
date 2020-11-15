@@ -1,7 +1,7 @@
 const homePageLoad = () => {
     const content = document.querySelector("#content");
     const foodImage = document.createElement("img");
-    foodImage.src = "https://source.unsplash.com/random";
+    foodImage.src = "https://source.unsplash.com/random/600x600";
 
     const headline = document.createElement("h1");
     headline.textContent = "My Restaraunt Headline";
