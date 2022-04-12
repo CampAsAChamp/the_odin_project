@@ -124,6 +124,21 @@ function loadBooksFromStorage() {
     console.log("Loaded library from local storage");
 }
 
+function populateLibraryWithSampleBooks() {
+    // const the_hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
+    // const hunger_games = new Book("The Hunger Games", "Suzane Collins", 360, false);
+    // const gone_girl = new Book("Gone Girl", "John Greene", 432, false);
+
+    // addBookToLibrary(the_hobbit);
+    // addBookToLibrary(hunger_games);
+    // addBookToLibrary(gone_girl);
+
+
+    addBookToLibrary(new Book("The Hobbit", "J.R.R. Tolkien", 295, true));
+    addBookToLibrary(new Book("The Hunger Games", "Suzane Collins", 360, false));
+    addBookToLibrary(new Book("Gone Girl", "John Greene", 432, false));
+}
+
 submitBtn.addEventListener("click", () => {
     let title = document.querySelector("#titleBox").value;
     let author = document.querySelector("#authorBox").value;
@@ -154,10 +169,4 @@ clearBooksBtn.addEventListener("click", () => {
     console.log("Removed all books");
 });
 
-const the_hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
-const hunger_games = new Book("The Hunger Games", "Suzane Collins", 360, false);
-const gone_girl = new Book("Gone Girl", "John Greene", 432, false);
-
-// addBookToLibrary(the_hobbit);
-// addBookToLibrary(hunger_games);
-// addBookToLibrary(gone_girl);
+populateLibraryWithSampleBooks()
