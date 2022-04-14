@@ -1,0 +1,18 @@
+#todays-weather {
+    display: inline;
+}
+
+#city-text {
+    display: inline;
+}
+
+#temp {
+    display: inline;
+}
+
+#temp-tag {
+    display: inline;
+}
+
+/* <p id="todays-weather">Today's Weather for </p> */
+/* <p id="city-text"></p> */
