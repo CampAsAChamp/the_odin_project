@@ -14,35 +14,17 @@ class EducationInfo extends Component {
         };
 
         // Need to bind this function so it knows what context to operate in
-        this.handleSchoolNameChange = this.handleSchoolNameChange.bind(this);
-        this.handleMajorChange = this.handleMajorChange.bind(this);
-        this.handleFromTimeChange = this.handleFromTimeChange.bind(this);
-        this.handleToTimeChange = this.handleToTimeChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // Updates the state's value every time we do something in the form
-    handleSchoolNameChange(event) {
-        this.setState({
-            schoolName: event.target.value
-        });
-    }
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
 
-    handleMajorChange(event) {
         this.setState({
-            major: event.target.value
-        });
-    }
-
-    handleFromTimeChange(event) {
-        this.setState({
-            fromTime: event.target.value
-        });
-    }
-
-    handleToTimeChange(event) {
-        this.setState({
-            toTime: event.target.value
+            [name]: value
         });
     }
 
@@ -63,13 +45,13 @@ class EducationInfo extends Component {
                 <h2>Education Info</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label> School Name: </label>
-                    <input type="text" name="schoolName" value={this.state.schoolName} onChange={this.handleSchoolNameChange} />
+                    <input type="text" name="schoolName" value={this.state.schoolName} onChange={this.handleInputChange} />
                     <label> Major: </label>
-                    <input type="text" name="major" value={this.state.major} onChange={this.handleMajorChange} />
+                    <input type="text" name="major" value={this.state.major} onChange={this.handleInputChange} />
                     <label> From: </label>
-                    <input type="text" name="fromTime" value={this.state.fromTime} onChange={this.handleFromTimeChange} />
+                    <input type="text" name="fromTime" value={this.state.fromTime} onChange={this.handleInputChange} />
                     <label> To: </label>
-                    <input type="text" name="toTime" value={this.state.toTime} onChange={this.handleToTimeChange} />
+                    <input type="text" name="toTime" value={this.state.toTime} onChange={this.handleInputChange} />
                     <button>Submit Info</button>
                 </form>
             </div>
