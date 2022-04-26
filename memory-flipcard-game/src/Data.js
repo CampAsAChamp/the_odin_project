@@ -1,23 +1,19 @@
 let Cards = [
     {
-        id: 1,
         name: "Lakers",
-        img: "",
+        img: "https://www.nba.com/stats/media/img/teams/logos/LAL_logo.svg",
     },
     {
-        id: 2,
         name: "Celtics",
-        img: "",
+        img: "https://www.nba.com/stats/media/img/teams/logos/BOS_logo.svg",
     },
     {
-        id: 3,
         name: "Knicks",
-        img: "",
+        img: "https://www.nba.com/stats/media/img/teams/logos/NYK_logo.svg",
     },
     {
-        id: 4,
         name: "Bulls",
-        img: "",
+        img: "https://www.nba.com/stats/media/img/teams/logos/CHI_logo.svg",
     },
 
 ]

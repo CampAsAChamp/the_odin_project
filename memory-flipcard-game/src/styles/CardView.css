@@ -1,0 +1,5 @@
+.card-view {
+    display: flex;
+    border: 5px solid gray;
+    justify-content: space-between;
+}
