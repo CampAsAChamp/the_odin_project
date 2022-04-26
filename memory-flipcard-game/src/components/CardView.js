@@ -39,7 +39,6 @@ class CardView extends Component {
                 clicked: [],
             })
             this.props.updateHighScoreFunction()
-            this.shuffle(Cards)
         }
         else {
             this.setState({
@@ -47,6 +46,7 @@ class CardView extends Component {
             })
             this.props.increaseScoreFunction()
         }
+        this.shuffle(Cards)
     }
 
     // componentDidUpdate(prevProps, prevState) {
