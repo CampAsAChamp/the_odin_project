@@ -34,14 +34,12 @@ class CardView extends Component {
     }
 
     handleCardClick(card) {
-        // console.log("Card clicked -- ", card)
-
         if (this.state.clicked.includes(card)) {
             this.setState({
                 clicked: [],
-                unclicked: this.shuffle(Cards),
             })
             this.props.updateHighScoreFunction()
+            this.shuffle(Cards)
         }
         else {
             this.setState({
