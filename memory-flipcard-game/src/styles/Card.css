@@ -1,7 +1,7 @@
 .card {
     border: 5px solid black;
     cursor: pointer;
-
+    border-radius: 15px;
 }
 
 .team-logo {
