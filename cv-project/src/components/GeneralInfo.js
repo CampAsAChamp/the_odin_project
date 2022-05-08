@@ -1,85 +1,71 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import GeneralInfoView from "./GeneralInfoView";
 
-class GeneralInfo extends Component {
-    constructor() {
-        super();
+const GeneralInfo = () => {
+    const [inputs, setInputs] = useState({
+        name: '1',
+        email: '2',
+        phone: '3',
+    })
 
-        // Declare state as an object
-        this.state = {
-            name: '1',
-            email: '2',
-            phone: '3',
-            entry: {
-                name: '',
-                email: '',
-                phone: '',
-            }
-        };
+    const [entry, setEntry] = useState({
+        name: '',
+        email: '',
+        phone: '',
+    })
 
-        // Need to bind this function so it knows what context to operate in
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.editButtonFunction = this.editButtonFunction.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this)
+    const handleInputChange = (event) => {
+        setInputs({ ...inputs, [event.target.name]: event.target.value })
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
+    const handleSubmit = (event) => {
+        setEntry({
+            name: inputs.name,
+            email: inputs.email,
+            phone: inputs.phone,
+        })
 
-        this.setState({
-            [name]: value
-        });
-    }
-
-
-    handleSubmit(event) {
-        this.setState({
-            entry: {
-                name: this.state.name,
-                email: this.state.email,
-                phone: this.state.phone,
-            },
+        setInputs({
             name: '',
             email: '',
             phone: '',
         })
+
         event.preventDefault();
     }
 
-    editButtonFunction(event) {
-        this.setState({
-            name: this.state.entry.name,
-            email: this.state.entry.email,
-            phone: this.state.entry.phone,
-            entry: {
-                name: '',
-                email: '',
-                phone: '',
-            },
+    const editButtonFunction = (event) => {
+        setInputs({
+            name: entry.name,
+            email: entry.email,
+            phone: entry.phone,
         })
+
+        setEntry({
+            name: '',
+            email: '',
+            phone: '',
+        })
+
         event.preventDefault();
     }
 
-    render() {
-        return (
-            <div>
-                <h2>General Info</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <label> Name: </label>
-                    <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange} />
-                    <label> Email: </label>
-                    <input type="text" name="email" value={this.state.email} onChange={this.handleInputChange} />
-                    <label> Phone: </label>
-                    <input type="text" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
-                    <button onClick={this.editButtonFunction}>Edit Info</button>
-                    <button>Submit Info</button>
-                </form>
-                <GeneralInfoView entry={this.state.entry} />
-            </div>
-        );
-    }
+    return (
+        <div>
+            <h2>General Info</h2>
+            <form onSubmit={handleSubmit}>
+                <label> Name: </label>
+                <input type="text" name="name" value={inputs.name || ''} onChange={handleInputChange} />
+                <label> Email: </label>
+                <input type="text" name="email" value={inputs.email || ''} onChange={handleInputChange} />
+                <label> Phone: </label>
+                <input type="text" name="phone" value={inputs.phone || ''} onChange={handleInputChange} />
+                <button onClick={editButtonFunction}>Edit Info</button>
+                <button>Submit Info</button>
+            </form>
+            <GeneralInfoView entry={entry} />
+        </div>
+    );
 }
 
 export default GeneralInfo;

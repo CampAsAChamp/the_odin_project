@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import PracticalInfo from './components/PracticalInfo';
 import GeneralInfo from './components/GeneralInfo';
-import EducationInfo from './components/EducationInfo';
 
 /* 
   - A section to add general information like name, email, phone number
@@ -17,8 +15,6 @@ class App extends Component {
       <div>
         <h1>CV Application</h1>
         <GeneralInfo />
-        <EducationInfo />
-        <PracticalInfo />
       </div>
     );
   }
