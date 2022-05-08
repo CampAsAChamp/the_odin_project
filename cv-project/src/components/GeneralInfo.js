@@ -15,7 +15,11 @@ const GeneralInfo = () => {
     })
 
     const handleInputChange = (event) => {
-        setInputs({ ...inputs, [event.target.name]: event.target.value })
+        const target = event.target
+        const name = target.name
+        const value = target.value
+
+        setInputs({ ...inputs, [name]: value })
     }
 
     const handleSubmit = (event) => {
