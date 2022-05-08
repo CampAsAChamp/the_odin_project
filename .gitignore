@@ -1,6 +1,7 @@
-
 # Ignores the VS Code directory
 .vscode/
 
 # Ignores all directories named node_modules
 node_modules/
+
+.DS_Store
