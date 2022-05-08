@@ -49,12 +49,6 @@ class CardView extends Component {
         this.shuffle(Cards)
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevState.clicked !== this.state.clicked) {
-    //         console.log('pokemons state has changed.')
-    //     }
-    // }
-
     render() {
         return (
             <div className="card-view">
