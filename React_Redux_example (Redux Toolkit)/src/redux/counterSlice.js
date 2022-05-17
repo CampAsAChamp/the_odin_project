@@ -6,7 +6,7 @@ const initialState = {
 
 // Create Redux State Slice
 export const counterSlice = createSlice({
-  name: "counterNick",
+  name: "counter",
   initialState,
   reducers: {
     increment: (state) => {
