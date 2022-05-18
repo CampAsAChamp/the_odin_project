@@ -7,6 +7,8 @@ export default function Item(props) {
       <h3>{name}</h3>
       <p>{description}</p>
       <p>${price}</p>
+      <button>-</button>
+      <button>+</button>
       <button>Add to cart</button>
     </div>
   );
