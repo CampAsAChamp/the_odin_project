@@ -20,7 +20,6 @@ function App() {
   const itemLookup = populateItemMap();
   const [cart, setCart] = useState(new Map());
 
-
   const addItemsToCart = (itemName, quantity) => {
     const newCart = new Map(cart);
 
@@ -52,8 +51,7 @@ function App() {
       newCart.set(itemName, newQty);
 
       setCart(newCart);
-    }
-    else {
+    } else {
       const newCart = new Map(cart);
       newCart.delete(itemName);
 
@@ -66,12 +64,12 @@ function App() {
   };
 
   function calculateNumItemsInCart() {
-    let numItems = 0
+    let numItems = 0;
     for (let itemQuantity of cart.values()) {
       numItems += itemQuantity;
     }
 
-    return numItems
+    return numItems;
   }
 
   return (
