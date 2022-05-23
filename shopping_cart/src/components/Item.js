@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Item.css";
 
 export default function Item(props) {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const { name, description, price, addItemsToCart } = props;
 
   const increment = () => {
