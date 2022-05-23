@@ -33,8 +33,6 @@ function App() {
 
     newCart.set(itemName, newQty);
     setCart(newCart);
-
-    console.log("Adding ", quantity, itemName);
   };
 
   const removeItemFromCart = (itemName) => {
@@ -42,8 +40,6 @@ function App() {
 
     newCart.delete(itemName);
     setCart(newCart);
-
-    console.log("Removing ", itemName);
   };
 
   function incrementItemInCart(itemName) {
