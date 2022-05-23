@@ -1,18 +1,22 @@
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-export default function Navbar() {
+export default function Navbar(props) {
+  const { calculateNumItemsInCart } = props
+
   return (
-    <div id="navbar">
-      <a href="http://localhost:3000/">
+    <nav id="navbar">
+      <Link to="/">
         <button>Home</button>
-      </a>
-      <a href="http://localhost:3000/items">
+      </Link>
+      <Link to="/items">
         <button>View Items</button>
-      </a>
-      {/* Display the number of items currently in the cart next to the cart button */}
-      <a href="http://localhost:3000/cart">
-        <button>Cart</button>
-      </a>
-    </div>
+      </Link>
+      <Link to="/cart">
+        <button>Cart {calculateNumItemsInCart()}</button>
+      </Link>
+      <button onClick={props.printCart}>Print Cart</button>
+    </nav>
   );
 }

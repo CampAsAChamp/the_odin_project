@@ -1,7 +1,7 @@
 const Items = [
   {
     name: "RTX 3070",
-    description: "The 3nd best",
+    description: "The 3rd best",
     price: "500",
   },
   {
@@ -11,7 +11,7 @@ const Items = [
   },
   {
     name: "RTX 3090",
-    description: "The very best",
+    description: "The 1st best",
     price: "1500",
   },
 ];

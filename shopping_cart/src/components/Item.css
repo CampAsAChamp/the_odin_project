@@ -3,5 +3,10 @@
     border-radius: 30px;
     display: flex;
     flex-direction: column;
-    padding: 34px;
+    padding: 35px 100px;
+}
+
+.quantity-bar{
+    display: flex;
+    /* border: 2px solid blue; */
 }
