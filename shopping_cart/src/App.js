@@ -18,12 +18,8 @@ function App() {
   }
 
   const itemLookup = populateItemMap();
-
   const [cart, setCart] = useState(new Map());
 
-  const printCart = () => {
-    console.log(cart);
-  };
 
   const addItemsToCart = (itemName, quantity) => {
     const newCart = new Map(cart);
@@ -64,6 +60,10 @@ function App() {
       setCart(newCart);
     }
   }
+
+  const printCart = () => {
+    console.log(cart);
+  };
 
   function calculateNumItemsInCart() {
     let numItems = 0
