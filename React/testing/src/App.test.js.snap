@@ -1,0 +1,16 @@
+// App.test.js.snap
+
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`magnificent monkeys render 1`] = `
+<div>
+  <button
+    type="button"
+  >
+    Click Me
+  </button>
+  <h1>
+    Magnificent Monkeys
+  </h1>
+</div>
+`;
