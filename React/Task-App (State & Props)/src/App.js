@@ -1,17 +1,16 @@
 // Handle the input field with the logic
 
 import React, { Component } from "react";
-import Overview from './components/Overview';
-
+import Overview from "./components/Overview";
 
 class App extends Component {
   constructor() {
     super();
 
-    // Declare state as an object 
+    // Declare state as an object
     this.state = {
-      task: '',
-      tasks: []
+      task: "",
+      tasks: [],
     };
 
     // Need to bind this function so it knows what context to operate in
@@ -23,19 +22,20 @@ class App extends Component {
   handleChange(event) {
     // Can't change the event.target.value
     this.setState({
-      task: event.target.value
+      task: event.target.value,
     });
   }
 
   handleSubmit(event) {
     if (this.state.task !== "") {
       this.setState({
-        task: '',
-        tasks: [...this.state.tasks, this.state.task]
-      })
+        task: "",
+        tasks: [...this.state.tasks, this.state.task],
+      });
       event.preventDefault();
     }
   }
+  // TODO: Hello there
 
   render() {
     return (
